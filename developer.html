@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Developers | Project Tomorrow</title>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --dark-grey: #333;
+            --light-grey: #555;
+            --bg-color: #f4f7fa; /* Slightly cooler background */
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --card-shadow-hover: 0 12px 35px rgba(0, 123, 255, 0.15);
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-grey);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: padding 0.3s;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--light-grey);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.4s ease-out;
+        }
+        
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hamburger Menu Icon (hidden on desktop) */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; }
+        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--dark-grey); border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+        /* Team Section */
+        #team-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .team-intro {
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .team-intro h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+        }
+
+        .team-intro p {
+            font-size: 1.1rem;
+            color: var(--light-grey);
+            line-height: 1.7;
+        }
+
+        /* Developer Cards Grid */
+        .dev-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .dev-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            width: 250px;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dev-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .dev-card .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: var(--primary-color);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .dev-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            object-fit: fill;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .dev-card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 20px 0 5px;
+            color: var(--dark-grey);
+        }
+
+        .dev-card .role {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        .social-links a svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-grey);
+            color: #f4f4f4;
+            text-align: center;
+            padding: 2rem 2rem;
+            margin-top: 60px;
+        }
+        
+        .footer .logo { color: #fff; }
+        .footer p { margin: 1rem 0 0; color: #ccc; }
+
+        
+        /* == Responsive Design for Mobile == */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { position: absolute; top: 68px; right: 0; background-color: #fff; width: 100%; flex-direction: column; align-items: center; gap: 0; box-shadow: 0 4px 5px rgba(0,0,0,0.1); transform: translateY(-150%); transition: transform 0.5s ease-in-out; }
+            .nav-links.nav-active { transform: translateY(0%); }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a { display: block; padding: 1.5rem; }
+            .nav-links li a:hover { background-color: #f4f4f4; }
+            .nav-links li a::after { display: none; }
+            .hamburger { display: flex; }
+            .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+            .toggle .line2 { opacity: 0; }
+            .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+            .team-intro h1 { font-size: 2.2rem; }
+            .dev-card { width: 80%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html" class="logo">PROJECT TOMORROW</a>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="developer.html">Developer</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
+    </nav>
+
+    <section id="team-section">
+        <div class="team-intro" data-aos="fade-up">
+            <h1>The Architects of Tomorrow</h1>
+            <p>We are a passionate team of innovators and problem-solvers dedicated to crafting technology that serves humanity. Meet the minds behind Project Tomorrow.</p>
+        </div>
+
+        <div class="dev-grid">
+            <div class="dev-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-bg"></div>
+                <img src="myphoto.jpg" alt="Developer Yash Pareek">
+                <h2>Yash Pareek</h2>
+                <div class="social-links">
+                </div>
+            </div>
+
+            <div class="dev-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-bg"></div>
+                <img src="yasht.jpg" alt="Developer Yash Tomar">
+                <h2>Yash Tomar</h2>
+                 <div class="social-links">
+                </div>
+            </div>
+
+            <div class="dev-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-bg"></div>
+                <img src="sphoto.jpg" alt="Developer Saksham Jindal">
+                <h2>Saksham Jindal</h2>
+                 <div class="social-links">
+                </div>
+            </div>
+
+            <div class="dev-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-bg"></div>
+                <img src="adyant.jpg" alt="Developer Adyant Behera">
+                <h2>Adyant Behera</h2>
+                 <div class="social-links">
+                </div>
+            </div>
+
+            <div class="dev-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="card-bg"></div>
+                <img src="sahil.jpg" alt="Developer Sahil Vevariya">
+                <h2>Sahil Vevariya</h2>
+                 <div class="social-links">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <footer class="footer">
+        <p>&copy; 2025 Tech_Buddies. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate on Scroll) Library
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true,
+        });
+
+        // Hamburger Menu Functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+    </script>
+</body>
+</html>

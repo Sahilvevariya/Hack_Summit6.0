@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Tomorrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --dark-grey: #333;
+      --light-grey: #555;
+      --bg-color: #f4f7fa;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      line-height: 1.6;
+      color: var(--dark-grey);
+      background-color: var(--bg-color);
+    }
+
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--light-grey);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.4s ease-out;
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary-color);
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--dark-grey);
+      color: #f4f4f4;
+      text-align: center;
+      padding: 2rem 2rem;
+      margin-top: 60px;
+    }
+
+    .footer .logo {
+      color: #fff;
+    }
+    .footer p {
+      margin: 1rem 0 0;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="home.html" class="logo">PROJECT TOMORROW</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="developer.html">Developer</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Existing Content (Hero, Services, Benefits, etc.) -->
+  <!-- keep your sections as they are -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="home.html" class="logo">PROJECT TOMORROW</a>
+    <p>&copy; 2025 Tech_Buddies. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

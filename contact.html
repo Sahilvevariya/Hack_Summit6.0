@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Project Tomorrow</title>
+
+  <!-- Fonts & Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --dark-grey: #333;
+      --light-grey: #555;
+      --bg-color: #f4f7fa;
+      --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--dark-grey);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--light-grey);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.4s ease-out;
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; }
+    .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--dark-grey); border-radius: 2px; transition: all 0.3s ease-in-out; }
+
+    /* ===== Contact Section ===== */
+    #contact {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    #contact h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-grey);
+    }
+
+    #contact p {
+      font-size: 1.1rem;
+      color: var(--light-grey);
+      margin-bottom: 2rem;
+    }
+
+    .contact-container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      text-align: left;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      color: var(--dark-grey);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: inherit;
+    }
+
+    .contact-form button {
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #0056b3;
+    }
+
+    /* Image Box */
+    .image-box {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      padding: 20px;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    /* ===== FAQ Section ===== */
+    #faq {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    #faq h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    details {
+      background: #fff;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    details:hover {
+      transform: translateY(-2px);
+    }
+
+    summary {
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    details p {
+      margin-top: 10px;
+      color: var(--light-grey);
+      font-size: 0.95rem;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background-color: var(--dark-grey);
+      color: #f4f4f4;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 60px;
+    }
+
+    .footer .logo { color: #fff; }
+    .footer p { margin: 1rem 0 0; color: #ccc; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { 
+        position: absolute; top: 68px; right: 0; background-color: #fff; width: 100%; 
+        flex-direction: column; align-items: center; gap: 0; 
+        box-shadow: 0 4px 5px rgba(0,0,0,0.1); 
+        transform: translateY(-150%); transition: transform 0.5s ease-in-out;
+      }
+      .nav-links.nav-active { transform: translateY(0%); }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links li a { display: block; padding: 1.5rem; }
+      .nav-links li a:hover { background-color: #f4f4f4; }
+      .nav-links li a::after { display: none; }
+      .hamburger { display: flex; }
+      .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+      .toggle .line2 { opacity: 0; }
+      .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="home.html" class="logo">PROJECT TOMORROW</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="developer.html">Developer</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <span class="line1"></span>
+      <span class="line2"></span>
+      <span class="line3"></span>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h1 data-aos="fade-up">Get in Touch</h1>
+    <p data-aos="fade-up" data-aos-delay="100">Have questions, feedback, or ideas? We’d love to hear from you!</p>
+
+    <div class="contact-container">
+      <!-- Contact Form -->
+      <div class="contact-form" data-aos="fade-right">
+        <form>
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" placeholder="Write your message..." required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Image -->
+      <div class="image-box" data-aos="fade-left">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.-aoGMH2izrh2X-arkctVTQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Teamwork">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+
+    <details data-aos="fade-up" data-aos-delay="100">
+      <summary>What is Project Tomorrow about?</summary>
+      <p>Project Tomorrow is our initiative to build innovative tech-driven solutions for real-world challenges.</p>
+    </details>
+
+    <details data-aos="fade-up" data-aos-delay="200">
+      <summary>How can I collaborate with your team?</summary>
+      <p>You can reach out to us via the contact form above. We’re always open to collaborations!</p>
+    </details>
+
+    <details data-aos="fade-up" data-aos-delay="300">
+      <summary>Where are you located?</summary>
+      <p>We’re based in Chennai, India, but our team works across multiple locations.</p>
+    </details>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="home.html" class="logo">PROJECT TOMORROW</a>
+    <p>&copy; 2025 Tech_Buddies. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, offset: 100, once: true });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+  </script>
+</body>
+</html>

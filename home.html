@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Tomorrow</title>
+
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --dark-grey: #333;
+      --light-grey: #555;
+      --bg-color: #f4f7fa;
+      --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 12px 35px rgba(0, 123, 255, 0.15);
+    }
+
+    /* General Styling */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--dark-grey);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: padding 0.3s;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--light-grey);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.4s ease-out;
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary-color);
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--dark-grey);
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 8%;
+      min-height: 50vh;
+      background: #ffffffe2;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      padding-left: 50px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #007BFF;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Sections */
+    #services, #benefits, #how-it-works {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .services-container,
+    .benefits-container,
+    .steps-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .service-box,
+    .benefit-box,
+    .step-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      flex: 1 1 250px;
+      max-width: 280px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-box:hover,
+    .benefit-box:hover,
+    .step-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .service-box img { height: 70px; margin-bottom: 15px; }
+    .service-box h2 { font-size: 1.4rem; color: #ff4f81; margin-bottom: 10px; }
+    .benefit-box h2 { font-size: 1.3rem; color: #007BFF; margin-bottom: 10px; }
+    .step-number {
+      background: #3563c5;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px auto;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero-section { flex-direction: column; text-align: center; padding: 3rem 5%; }
+      .hero-content { padding-left: 0; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 0;
+        background-color: #fff;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.5s ease-in-out;
+      }
+      .nav-links.nav-active { transform: translateY(0%); }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links li a { display: block; padding: 1.5rem; }
+      .nav-links li a:hover { background-color: #f4f4f4; }
+      .nav-links li a::after { display: none; }
+      .hamburger { display: flex; }
+      .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+      .toggle .line2 { opacity: 0; }
+      .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="home.html" class="logo">PROJECT TOMORROW</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="developer.html">Developer</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <span class="line1"></span>
+      <span class="line2"></span>
+      <span class="line3"></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section" data-aos="fade-up">
+    <div class="hero-content">
+      <h1>Project Tomorrow</h1>
+      <p>YOUR LIFE SAVING BEACON</p>
+    </div>
+    <div class="hero-image" data-aos="fade-left">
+      <img src="asd.jpg" alt="Rescue Illustration">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="services" data-aos="fade-up">
+    <h1>APP Features</h1>
+    <div class="services-container">
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="100">
+        <img src="" alt="Location Tracking">
+        <h2>Location Tracking</h2>
+        <p>Your live location shared instantly with rescuers for faster response.</p>
+      </div>
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://img.icons8.com/color/96/alarm.png" alt="Instant Alerts">
+        <h2>Instant Alerts</h2>
+        <p>Send SOS alerts with one tap during critical emergencies.</p>
+      </div>
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://img.icons8.com/color/96/satellite.png" alt="Offline Mode">
+        <h2>Offline Mode</h2>
+        <p>Works even in low-network conditions using offline capabilities.</p>
+      </div>
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="400">
+        <img src="https://img.icons8.com/color/96/security-checked.png" alt="Safe & Secure">
+        <h2>Safe & Secure</h2>
+        <p>Your data is encrypted and only shared when you trigger an emergency.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" data-aos="fade-up">
+    <h1>Why Choose Us</h1>
+    <div class="benefits-container">
+      <div class="benefit-box" data-aos="flip-left" data-aos-delay="100">
+        <h2>🌐 Works without Internet</h2>
+        <p>Stay connected even when towers are down with our mesh network.</p>
+      </div>
+      <div class="benefit-box" data-aos="flip-left" data-aos-delay="200">
+        <h2>💰 Affordable & Scalable</h2>
+        <p>Designed for everyone — from villages to cities to industries.</p>
+      </div>
+      <div class="benefit-box" data-aos="flip-left" data-aos-delay="300">
+        <h2>⚡ Faster Rescues with AI + AR</h2>
+        <p>AI-driven detection & AR-guided teams ensure quicker rescues.</p>
+      </div>
+      <div class="benefit-box" data-aos="flip-left" data-aos-delay="400">
+        <h2>🤝 Trusted by NGOs / Govt</h2>
+        <p>A future-ready vision trusted by leading rescue organizations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" data-aos="fade-up">
+    <h1>How It Works</h1>
+    <div class="steps-container">
+      <div class="step-box" data-aos="fade-right" data-aos-delay="100">
+        <span class="step-number">1</span>
+        <h2>Disaster Strikes</h2>
+        <p>Immediate response is critical — every second counts.</p>
+      </div>
+      <div class="step-box" data-aos="fade-right" data-aos-delay="200">
+        <span class="step-number">2</span>
+        <h2>Mesh Network</h2>
+        <p>Devices connect directly to form a survival communication grid.</p>
+      </div>
+      <div class="step-box" data-aos="fade-right" data-aos-delay="300">
+        <span class="step-number">3</span>
+        <h2>SOS & AI Detection</h2>
+        <p>Victims send SOS or AI auto-detects survivors in danger zones.</p>
+      </div>
+      <div class="step-box" data-aos="fade-right" data-aos-delay="400">
+        <span class="step-number">4</span>
+        <h2>AR-Guided Rescues</h2>
+        <p>Rescue teams get real-time AR guidance for faster operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Tech_Buddies. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      offset: 100,
+      once: true,
+    });
+
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+  </script>
+</body>
+</html>
